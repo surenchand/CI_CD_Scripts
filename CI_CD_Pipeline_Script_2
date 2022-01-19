@@ -1,4 +1,8 @@
 node {
+  stage ('Clone Repo')
+  {
+  git branch: 'main', credentialsId: '12692706-29f2-4856-8763-7ebb69ed58d0', url: 'https://github.com/surenchand/CI_CD_Scripts.git'
+  }
   stage ('Run JMeter Test')
   {
   bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t C:/Jmeter/training/01_Scripts/Open_demo_updated.jmx'
