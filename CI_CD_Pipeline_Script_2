@@ -5,11 +5,11 @@ node {
   }
   stage ('Run JMeter Test')
   {
-  bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t C:/Jmeter/training/01_Scripts/Open_demo_updated.jmx'
+  bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx'
   }
   stage ('Analyse JMeter Test')
   {
-  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-csv ReportSummary_Overall.csv --input-jtl C:/Results/RunTime_TestPlan_RunSummary2.jtl --plugin-type AggregateReport --include-label-regex true --include-labels "JMeter.*"'
-  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-png All_Key_ResponseTimes.png --input-jtl C:/Results/RunTime_TestPlan_RunSummary2.jtl --plugin-type ResponseTimesOverTime --relative-times no --include-labels "JMeter.*"'
+  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-csv ReportSummary_Overall.csv --input-jtl RunTime_TestPlan_RunSummary2.jtl --plugin-type AggregateReport --include-label-regex true --include-labels "JMeter.*"'
+  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-png All_Key_ResponseTimes.png --input-jtl RunTime_TestPlan_RunSummary2.jtl --plugin-type ResponseTimesOverTime --relative-times no --include-labels "JMeter.*"'
   }
 }
