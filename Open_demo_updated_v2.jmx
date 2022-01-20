@@ -2094,7 +2094,7 @@ else
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">RunTime_TestPlan_RunSummary2.jtl</stringProp>
+        <stringProp name="filename">RunTime_TestPlan_RunSummary.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer - Errors" enabled="true">
@@ -2134,7 +2134,7 @@ else
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">RunTime_TestPlan_RunErrors2.jtl</stringProp>
+        <stringProp name="filename">RunTime_TestPlan_RunErrors.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
       <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
