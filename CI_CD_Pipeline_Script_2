@@ -5,11 +5,16 @@ node {
   }
   stage ('Run JMeter Test')
   {
-  bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx'
+    script {
+        def now = new Date()
+        def datetimestamp = now.format("yyMMdd_HHmmss", TimeZone.getTimeZone('UTC'))
+    }
+  bat 'set JTL=RunTime_TestPlan_RunSummary_${datetimestamp}.jtl
+  bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx - l %JTL%'
   }
   stage ('Analyse JMeter Test')
   {
-  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-csv ReportSummary_Overall.csv --input-jtl RunTime_TestPlan_RunSummary.jtl --plugin-type AggregateReport --include-label-regex true --include-labels "JMeter.*"'
-  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-png All_Key_ResponseTimes.png --input-jtl RunTime_TestPlan_RunSummary.jtl --plugin-type ResponseTimesOverTime --relative-times no --include-labels "JMeter.*"'
+  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-csv ReportSummary_Overall.csv --input-jtl %JTL% --plugin-type AggregateReport --include-label-regex true --include-labels "JMeter.*"'
+  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-png All_Key_ResponseTimes.png --input-jtl %JTL% --plugin-type ResponseTimesOverTime --relative-times no --include-labels "JMeter.*"'
   }
 }
