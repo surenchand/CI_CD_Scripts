@@ -2060,7 +2060,7 @@ else
           </hashTree>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer - Summary" enabled="true">
+      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer - Summary" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -2134,7 +2134,7 @@ else
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">RunTime_TestPlan_RunErrors1.jtl</stringProp>
+        <stringProp name="filename">RunTime_TestPlan_RunErrors.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
       <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="false">
