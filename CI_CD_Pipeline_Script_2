@@ -5,12 +5,13 @@ node {
   }
   stage ('Run JMeter Test')
   {
+      bat 'echo ${BUILD_TIMESTAMP}'
       bat 'set JTL = RunTime_TestPlan_RunSummary_2.jtl'
-      bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx -l %JTL%'
+      bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx -l RunTime_TestPlan_RunSummary_2.jtl'
   }
   stage ('Analyse JMeter Test')
   {
-  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-csv ReportSummary_Overall.csv --input-jtl %JTL% --plugin-type AggregateReport --include-label-regex true --include-labels "JMeter.*"'
-  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-png All_Key_ResponseTimes.png --input-jtl %JTL% --plugin-type ResponseTimesOverTime --relative-times no --include-labels "JMeter.*"'
+  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-csv ReportSummary_Overall.csv --input-jtl RunTime_TestPlan_RunSummary_2.jtl --plugin-type AggregateReport --include-label-regex true --include-labels "JMeter.*"'
+  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-png All_Key_ResponseTimes.png --input-jtl RunTime_TestPlan_RunSummary_2.jtl --plugin-type ResponseTimesOverTime --relative-times no --include-labels "JMeter.*"'
   }
 }
