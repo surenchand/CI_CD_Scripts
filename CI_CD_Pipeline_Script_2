@@ -5,16 +5,16 @@ node {
   }
   stage ('Run JMeter Test')
   {
-    script {
+    steps
+      {
+      script {
         def now = new Date()
         def datetimestamp = now.format("yyMMdd_HHmmss")
         println datetimestamp
-    }
-    steps
-    {
+        }
       bat 'set JTL = RunTime_TestPlan_RunSummary_2.jtl'
       bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx -l %JTL%'
-    }
+      }
   }
   stage ('Analyse JMeter Test')
   {
