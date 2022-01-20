@@ -11,7 +11,7 @@ node {
         println datetimestamp
     }
   bat 'set JTL = RunTime_TestPlan_RunSummary_2.jtl'
-  bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx - l %JTL%'
+  bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx -l %JTL%'
   }
   stage ('Analyse JMeter Test')
   {
