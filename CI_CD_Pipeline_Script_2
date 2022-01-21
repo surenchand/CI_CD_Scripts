@@ -18,8 +18,8 @@ node {
   }
   stage ('Copy files to Results Dir')
   {
-    bat 'move *.jtl c:\Results\'
-    bat 'move *.png c:\Results\'
-    bat 'move *.csv c:\Results\'
+    bat 'move *.jtl c:/Results/'
+    bat 'move *.png c:/Results/'
+    bat 'move *.csv c:/Results/'
   }
   }
