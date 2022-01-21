@@ -5,16 +5,21 @@ node {
   }
   stage ('Run JMeter Test')
   {
-      bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx'
+    bat 'C:/Jmeter/apache-jmeter-5.4.1/bin/jmeter.bat -n -t Open_demo_updated_v2.jmx'
   }
   stage ('Analyse JMeter Test')
   {
-  script {def files = findFiles(glob: 'RunTime_TestPlan_RunSummary*.jtl') 
-  echo "${files[0].name}"
-  bat 'set  filename=RunTime_TestPlan_RunSummary1.jtl'
+    script {def files = findFiles(glob: 'RunTime_TestPlan_RunSummary*.jtl') 
+            echo "${files[0].name}"
+            def JTL_filename = ${files[0].name}
+           }
+    bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-csv ReportSummary_Overall.csv --input-jtl RunTime_TestPlan_RunSummary1.jtl --plugin-type AggregateReport --include-label-regex true --include-labels "JMeter.*"'
+    bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-png All_Key_ResponseTimes.png --input-jtl RunTime_TestPlan_RunSummary1.jtl --plugin-type ResponseTimesOverTime --relative-times no --include-labels "JMeter.*"'
   }
-  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-csv ReportSummary_Overall.csv --input-jtl RunTime_TestPlan_RunSummary1.jtl --plugin-type AggregateReport --include-label-regex true --include-labels "JMeter.*"'
-  bat 'C:/JMeter/apache-jmeter-5.4.1/bin/JMeterPluginsCMD.bat --tool Reporter --generate-png All_Key_ResponseTimes.png --input-jtl RunTime_TestPlan_RunSummary1.jtl --plugin-type ResponseTimesOverTime --relative-times no --include-labels "JMeter.*"'
-  cleanWs()
+  stage ('Copy files to Results Dir')
+  {
+    bat 'move *.jtl c:\Results\'
+    bat 'move *.png c:\Results\'
+    bat 'move *.csv c:\Results\'
   }
-}
+  }
